@@ -114,7 +114,7 @@ const ShowTotalPrice = document.querySelector(".total-price")
 const productsCount = document.querySelector(".products-count")
 const basketBtnCount = document.querySelector(".count")
 
-function getProductsFromLocalStorage(){
+const getProductsFromLocalStorage = () => {
   const basketFromLocal = JSON.parse(localStorage.getItem("BASKET"))
   if (basketFromLocal){
     basket = basketFromLocal;
@@ -125,17 +125,16 @@ function getProductsFromLocalStorage(){
   showBasketProductsCount()
 }
 
-function calculateTotalPrice(){
+const calculateTotalPrice = () => {
   let totalPrice = 0;
-  basket.forEach(function(product){
+  basket.forEach((product) => {
     totalPrice += product.price * product.count
     ShowTotalPrice.innerHTML = `${totalPrice.toLocaleString()} تومان`
   })
 }
 
-function showProducts(){
-  products.forEach(function(product){
-    wrapper.insertAdjacentHTML("beforeend" , 
+const showProducts = () => 
+  products.forEach((product) => wrapper.insertAdjacentHTML("beforeend" , 
       `
       <article>
         <header class="product-header">
@@ -154,23 +153,15 @@ function showProducts(){
         </footer>
       </article>
       `
-    )
-  })
-}
+    ))
 
-function saveBasketInLocalStorage(){
-  localStorage.setItem("BASKET" , JSON.stringify(basket))
-}
+const saveBasketInLocalStorage = () => localStorage.setItem("BASKET" , JSON.stringify(basket))
 
-function showBasketModal(){
-  basketModal.classList.remove("hidden")
-}
+const showBasketModal = () => basketModal.classList.remove("hidden")
 
-function hideBasketModal(){
-  basketModal.classList.add("hidden")
-}
+const hideBasketModal = () => basketModal.classList.add("hidden")
 
-function clearBasket(){
+const clearBasket = () => {
   basket = [];
   ShowTotalPrice.innerHTML = ""
   showBasketProducts()
@@ -178,14 +169,9 @@ function clearBasket(){
   localStorage.clear()
 }
 
-function addProductToBasket(productId){
-  const mainProduct = products.find(function(product){
-    return product.id === productId
-  });
-
-  const isProductInBasket = basket.some(function (product) {
-    return product.id === mainProduct.id;
-  });
+const addProductToBasket = (productId) => {
+  const mainProduct = products.find((product) => product.id === productId);
+  const isProductInBasket = basket.some((product) => product.id === mainProduct.id);
 
   if (isProductInBasket) {
     increaseProductCount(mainProduct.id);
@@ -207,7 +193,7 @@ function addProductToBasket(productId){
   saveBasketInLocalStorage()
 }
 
-function showBasketProducts() {
+const showBasketProducts = () =>  {
   basketMain.innerHTML = ""
 
   if (!basket.length){
@@ -215,8 +201,7 @@ function showBasketProducts() {
       `<p class="empty-basket">سبد خرید شما خالی می باشد :(</p>`
     )
   } else{
-    basket.forEach(function(product){
-      basketMain.insertAdjacentHTML("beforeend" ,
+      basket.forEach((product) => basketMain.insertAdjacentHTML("beforeend" ,
         `<article class="basket-item">
           <div class="flex-center">
             <img src=${product.img} alt="">
@@ -245,17 +230,15 @@ function showBasketProducts() {
             </div>
           </div>
         </article>`
-      );
-    });
-  }
+      ));
+    }
   calculateTotalPrice()
   showBasketProductsCount()
 }
 
-function removeProductFromBasket(productID){
-  const mainProductIndex = basket.findIndex(function(product){
-    return product.id === productID;
-  })
+const removeProductFromBasket = (productID) => {
+  const mainProductIndex = basket.findIndex((product) => product.id === productID)
+
   basket.splice(mainProductIndex , 1);
   showBasketProducts()
   calculateTotalPrice()
@@ -263,16 +246,14 @@ function removeProductFromBasket(productID){
   saveBasketInLocalStorage()
 }
 
-function showBasketProductsCount(){
+const showBasketProductsCount = () => {
   basketBtnCount.classList.remove("hidden")
   basketBtnCount.innerHTML = basket.length
   productsCount.innerHTML = `(${basket.length})`
 }
 
-function increaseProductCount(productID){
-  const productToIncreaseCount = basket.find(function (product) {
-    return product.id === productID;
-  });
+const increaseProductCount = (productID) => {
+  const productToIncreaseCount = basket.find((product) => product.id === productID);
 
   productToIncreaseCount.count += 1;
 
@@ -281,17 +262,13 @@ function increaseProductCount(productID){
   showBasketProducts();
 }
 
-function decreaseProductCount(productID) {
-  const productToIncreaseCount = basket.find(function (product) {
-    return product.id === productID;
-  });
+const decreaseProductCount = (productID) =>  {
+  const productToIncreaseCount = basket.find((product) => product.id === productID)
 
   productToIncreaseCount.count -= 1;
 
   if (!productToIncreaseCount.count) {
-    const productToRemoveFromBasket = basket.findIndex(function (product) {
-      return product.id === productID;
-    });
+    const productToRemoveFromBasket = basket.findIndex((product) => product.id === productID)
 
     basket.splice(productToRemoveFromBasket, 1);
   }
