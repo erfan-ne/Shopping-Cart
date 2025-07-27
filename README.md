@@ -2,9 +2,22 @@
 
 A fully functional shopping cart web app with RTL (Right-To-Left) support for Persian users. Built using vanilla JavaScript, HTML, and CSS with dynamic cart features and localStorage integration.
 
+---
+
 ## 📸 Preview
 
-![Preview](./public/images/header.gf)
+Live Demo:
+[CLICK HERE](https://erfan-ne.github.io/Shopping-Cart/)
+
+---
+
+## 🖼️ Screenshots
+
+### 📱 Desktop View
+
+![Word Counter Screenshot]()
+
+---
 
 ## 🚀 Features
 
