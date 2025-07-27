@@ -15,7 +15,8 @@ Live Demo:
 
 ### 📱 Desktop View
 
-![Word Counter Screenshot]()
+![Word Counter Screenshot](https://github.com/erfan-ne/Shopping-Cart/blob/master/public/Screenshot%201.png)
+![Word Counter Screenshot](https://github.com/erfan-ne/Shopping-Cart/blob/master/public/Screenshot%202.png)
 
 ---
 
